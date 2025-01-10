@@ -89,3 +89,31 @@ func TestPrefixCount(t *testing.T) {
 		})
 	}
 }
+
+func TestLengthOfLongestSubstring(t *testing.T) {
+	tests := []struct {
+		name           string
+		input          string
+		expectedOutput int
+	}{
+		{"abcabcbb", "abcabcbb", 3},
+		{"bbbbb", "bbbbb", 1},
+		{"pwwkew", "pwwkew", 3},
+		{"", "", 0},
+		{"abcdefg", "abcdefg", 7},
+		{"abcdabcdef", "abcdabcdef", 6},
+		{"dvdf", "dvdf", 3},
+		{"anviaj", "anviaj", 5},
+		{"jbpnbwwd", "jbpnbwwd", 4},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := functions.LengthOfLongestSubstring(tt.input)
+			if result != tt.expectedOutput {
+				t.Errorf("lengthOfLongestSubstring(%s)\toutput: %d\texpected: %d\n", tt.input, result, tt.expectedOutput)
+			} else {
+				fmt.Printf("PASS!\tlengthOfLongestSubstring(%s)\toutput: %d\texpected: %d\n", tt.input, result, tt.expectedOutput)
+			}
+		})
+	}
+}
