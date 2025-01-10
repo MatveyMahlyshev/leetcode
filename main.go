@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println(functions.PrefixCount([]string{"leetcode", "win", "loops", "success"}, "l"))
+	fmt.Println(functions.LengthOfLongestSubstring("jbpnbwwd"))
 }

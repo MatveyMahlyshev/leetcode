@@ -111,3 +111,31 @@ func PrefixCount(words []string, pref string) int {
 	}
 	return count
 }
+
+func LengthOfLongestSubstring(s string) int {
+	count := 0
+	maxLength := 0
+	hashTable := make(map[byte]int)
+	for i := 0; i < len(s); {
+		_, exists := hashTable[s[i]]
+		if !exists {
+			hashTable[s[i]] = 1
+			count += 1
+		} else {
+			if count > maxLength {
+				maxLength = count
+			}
+			hashTable = make(map[byte]int)
+			i = i - (count - 1)
+			count = 0
+			continue
+
+		}
+		i++
+
+	}
+	if count > maxLength {
+		return count
+	}
+	return maxLength
+}
