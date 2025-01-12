@@ -117,3 +117,80 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 		})
 	}
 }
+
+func TestTopKFrequent(t *testing.T) {
+	tests := []struct {
+		name           string
+		words          []string
+		k              int
+		expectedOutput []string
+	}{
+		{"i love", []string{"i", "love", "leetcode", "i", "love", "coding"}, 2, []string{"i", "love"}},
+		{"the is sunny day", []string{"the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"}, 4, []string{"the", "is", "sunny", "day"}},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := functions.TopKFrequent(tt.words, tt.k)
+			if len(result) != len(tt.expectedOutput) {
+				t.Errorf("topkFrequent(%s, %d)\toutput: %s\texpected: %s\n", tt.words, tt.k, result, tt.expectedOutput)
+			} else {
+				isCorrect := true
+				for i := 0; i < len(result); i++ {
+					if result[i] != tt.expectedOutput[i] {
+						t.Errorf("topkFrequent(%s, %d)\toutput: %s\texpected: %s\n", tt.words, tt.k, result, tt.expectedOutput)
+						isCorrect = false
+						break
+					}
+				}
+				if isCorrect {
+					fmt.Printf("PASS!\ttopkFrequent(%s, %d)\toutput: %s\texpected: %s\n", tt.words, tt.k, result, tt.expectedOutput)
+				}
+			}
+		})
+	}
+}
+
+func TestReverseWords(t *testing.T) {
+	tests := []struct {
+		name           string
+		s              string
+		expectedOutput string
+	}{
+		{"hello world", "  hello  world  ", "world hello"},
+		{"the sky is blue", "the sky is blue", "blue is sky the"},
+		{"a good   example", "a good   example", "example good a"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := functions.ReverseWords(tt.s)
+			if result != tt.expectedOutput {
+				t.Errorf("reverseWords(%s)\toutput: %s\texpected: %s\n", tt.s, result, tt.expectedOutput)
+			} else {
+				fmt.Printf("PASS!\treverseWords(%s)\toutput: %s\texpected: %s\n", tt.s, result, tt.expectedOutput)
+			}
+		})
+	}
+}
+
+func TestCountPrefixSuffixPairs(t *testing.T) {
+	tests := []struct {
+		name           string
+		words          []string
+		expectedOutput int
+	}{
+		{"a", []string{"a", "aba", "ababa", "aa"}, 4},
+		{"pa", []string{"pa", "papa", "ma", "mama"}, 2},
+		{"abab", []string{"abab", "ab"}, 0},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := functions.CountPrefixSuffixPairs(tt.words)
+			if result != tt.expectedOutput {
+				t.Errorf("countPrefixSuffixPairs(%s)\toutput: %d\texpected: %d\n", tt.words, result, tt.expectedOutput)
+			} else {
+				fmt.Printf("countPrefixSuffixPairs(%s)\toutput: %d\texpected: %d\n", tt.words, result, tt.expectedOutput)
+			}
+		})
+	}
+}

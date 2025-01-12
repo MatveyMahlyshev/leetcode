@@ -2,7 +2,9 @@ package functions
 
 import (
 	"math"
+	"slices"
 	"strconv"
+	"strings"
 )
 
 func Reverse(x int) int {
@@ -138,4 +140,59 @@ func LengthOfLongestSubstring(s string) int {
 		return count
 	}
 	return maxLength
+}
+func maxOfMap(wordsMap map[string]int) string {
+	maxValue := 0
+	maxKey := ""
+	for k, v := range wordsMap {
+		if v > maxValue {
+			maxValue = v
+			maxKey = k
+		} else if v == maxValue {
+			if maxKey > k {
+				maxKey = k
+			}
+		}
+
+	}
+	return maxKey
+}
+func TopKFrequent(words []string, k int) []string {
+	wordMap := make(map[string]int)
+	result := []string{}
+	for _, v := range words {
+		if _, ok := wordMap[v]; !ok {
+			wordMap[v] = 1
+		} else {
+			wordMap[v] += 1
+		}
+	}
+	for i := 0; i < k; i++ {
+		key := maxOfMap(wordMap)
+		result = append(result, key)
+		delete(wordMap, key)
+
+	}
+
+	return result
+}
+
+func ReverseWords(s string) string {
+	s = strings.Trim(s, " ")
+	parts := strings.Fields(s)
+	slices.Reverse(parts)
+	s = strings.Join(parts, " ")
+	return s
+}
+
+func CountPrefixSuffixPairs(words []string) int {
+	count := 0
+	for i := 0; i < len(words) - 1; i++ {
+		for j := i + 1; j < len(words); j++ {
+			if strings.HasPrefix(words[j], words[i]) && strings.HasSuffix(words[j], words[i]) {
+				count += 1
+			}
+		}
+	}
+	return count
 }

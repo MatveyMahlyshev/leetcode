@@ -6,5 +6,6 @@ import (
 )
 
 func main() {
-	fmt.Println(functions.LengthOfLongestSubstring("jbpnbwwd"))
+
+	fmt.Println(functions.CountPrefixSuffixPairs([]string{"abab", "ab"}))
 }
