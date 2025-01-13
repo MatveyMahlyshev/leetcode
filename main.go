@@ -6,6 +6,5 @@ import (
 )
 
 func main() {
-
-	fmt.Println(functions.CountPrefixSuffixPairs([]string{"abab", "ab"}))
+	fmt.Println(functions.IsMatch("ab", ".*"))
 }

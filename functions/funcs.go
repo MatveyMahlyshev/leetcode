@@ -2,6 +2,7 @@ package functions
 
 import (
 	"math"
+	"regexp"
 	"slices"
 	"strconv"
 	"strings"
@@ -187,7 +188,7 @@ func ReverseWords(s string) string {
 
 func CountPrefixSuffixPairs(words []string) int {
 	count := 0
-	for i := 0; i < len(words) - 1; i++ {
+	for i := 0; i < len(words)-1; i++ {
 		for j := i + 1; j < len(words); j++ {
 			if strings.HasPrefix(words[j], words[i]) && strings.HasSuffix(words[j], words[i]) {
 				count += 1
@@ -196,3 +197,10 @@ func CountPrefixSuffixPairs(words []string) int {
 	}
 	return count
 }
+
+func IsMatch(s string, p string) bool {
+	p = "^" + p + "$"
+	a, _ := regexp.MatchString(p, s)
+	return a
+}
+
